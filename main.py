@@ -40,8 +40,15 @@ def scale_sub_image(sub_image_location):
     except FileNotFoundError:
         print("file not found")
         print_help_message()
-    scaled_sub_image = unscaled_sub_image.resize((230, 230))  # TODO: improve this to work better with non-square images
-    return scaled_sub_image  # now scaled to 230 by 230, this is about right for our background image
+        exit()
+    if unscaled_sub_image.size[0] > unscaled_sub_image.size[1]:
+        # width is greater than height
+        new_height = round((unscaled_sub_image.size[1] / unscaled_sub_image.size[0]) * 230)
+        return unscaled_sub_image.resize((230, new_height))
+    else:
+        # height is greater than width
+        new_width = round((unscaled_sub_image.size[0] / unscaled_sub_image.size[1]) * 230)
+        return unscaled_sub_image.resize((new_width, 230))
 
 
 def paste_sub_image(base_image, scaled_sub_image):
