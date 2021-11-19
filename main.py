@@ -35,7 +35,11 @@ def write_name(base_image, text):
 
 
 def scale_sub_image(sub_image_location):
-    unscaled_sub_image = Image.open(sub_image_location)
+    try:
+        unscaled_sub_image = Image.open(sub_image_location)
+    except FileNotFoundError:
+        print("file not found")
+        print_help_message()
     scaled_sub_image = unscaled_sub_image.resize((230, 230))  # TODO: improve this to work better with non-square images
     return scaled_sub_image  # now scaled to 230 by 230, this is about right for our background image
 
