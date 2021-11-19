@@ -4,11 +4,22 @@ import sys
 # TODO: add error checking for all of these functions
 
 
+def print_help_message():
+    #  TODO: improve help message
+    help_message = """usage: [text] [location of image]\noutputs to output.jpeg"""
+    print(help_message)
+    exit()
+
+
 def get_input():
-    # TODO: add a -h help section
-    print(sys.argv[1])
-    print(sys.argv[2])
-    return [sys.argv[1], sys.argv[2]]
+    #  TODO: add an optional parameter to set the output location
+    if len(sys.argv) > 0:
+        if sys.argv[1] == "-h" or sys.argv[1] == "help":
+            print_help_message()
+        if len(sys.argv) > 2:
+            return [sys.argv[1], sys.argv[2]]
+    else:
+        print_help_message()
 
 
 def load_base_image(base_image_location):
