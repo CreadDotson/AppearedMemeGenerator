@@ -6,18 +6,19 @@ import sys
 
 def print_help_message():
     #  TODO: improve help message
-    help_message = """usage: [text] [location of image]\noutputs to output.jpeg"""
+    help_message = """usage: [text] [location of image] [optional output filename]\noutputs to output.jpeg"""
     print(help_message)
     exit()
 
 
 def get_input():
-    #  TODO: add an optional parameter to set the output location
     if len(sys.argv) > 0:
         if sys.argv[1] == "-h" or sys.argv[1] == "help":
             print_help_message()
-        if len(sys.argv) > 2:
-            return [sys.argv[1], sys.argv[2]]
+        if len(sys.argv) == 3:
+            return [sys.argv[1], sys.argv[2], "output.jpeg"]
+        if len(sys.argv) > 3:
+            return [sys.argv[1], sys.argv[2], sys.argv[3]]
     else:
         print_help_message()
 
@@ -55,8 +56,8 @@ def paste_sub_image(base_image, scaled_sub_image):
     base_image.paste(scaled_sub_image, (300, 20))
 
 
-def write_output_image(base_image):
-    base_image.save("output.jpeg")
+def write_output_image(base_image, output_file_name):
+    base_image.save(output_file_name)
 
 
 if __name__ == '__main__':
@@ -67,4 +68,5 @@ if __name__ == '__main__':
     write_name(base_image, text)
     scaled_sub_image = scale_sub_image(sub_image_location)
     paste_sub_image(base_image, scaled_sub_image)
-    write_output_image(base_image)
+    output_file_name = inputs[2]
+    write_output_image(base_image, output_file_name)
