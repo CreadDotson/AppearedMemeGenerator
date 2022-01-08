@@ -60,13 +60,17 @@ def write_output_image(base_image, output_file_name):
     base_image.save(output_file_name)
 
 
-if __name__ == '__main__':
-    inputs = get_input()
-    text = inputs[0]
-    sub_image_location = inputs[1]
+def create_image(text, sub_image_location="pika.jpeg", output_location="output.jpeg"):
     base_image = load_base_image("base_image.jpeg")
     write_name(base_image, text)
     scaled_sub_image = scale_sub_image(sub_image_location)
     paste_sub_image(base_image, scaled_sub_image)
-    output_file_name = inputs[2]
     write_output_image(base_image, output_file_name)
+
+
+if __name__ == '__main__':
+    inputs = get_input()
+    text = inputs[0]
+    sub_image_location = inputs[1]
+    output_file_name = inputs[2]
+    create_image(text, sub_image_location, output_file_name)
