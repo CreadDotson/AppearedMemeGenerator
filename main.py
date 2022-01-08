@@ -65,7 +65,7 @@ def create_image(text, sub_image_location="pika.jpeg", output_location="output.j
     write_name(base_image, text)
     scaled_sub_image = scale_sub_image(sub_image_location)
     paste_sub_image(base_image, scaled_sub_image)
-    write_output_image(base_image, output_file_name)
+    write_output_image(base_image, output_location)
 
 
 if __name__ == '__main__':
